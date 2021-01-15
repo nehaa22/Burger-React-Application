@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import classes from './Burger.css'
+import React from "react";
+import classes from './Burger.module.css'
 import BurgerIngredient from "./BurgerIngredients/BurgerIngredients";
 
 const Burger = (props) => {
@@ -12,3 +12,5 @@ const Burger = (props) => {
         </div>
     );
 };
+
+export default Burger;
