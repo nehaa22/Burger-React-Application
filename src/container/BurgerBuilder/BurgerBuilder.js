@@ -12,6 +12,11 @@ class BurgerBuilder extends Component {
             meat: 0
         }
     }
+
+    addIngredientHandler = (type) =>{
+
+    }
+
     render() {
         return (
             <Aux>
