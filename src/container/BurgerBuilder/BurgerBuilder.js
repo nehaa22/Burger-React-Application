@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Burger from "../../components/Burger/Burger";
 import Aux from "../../Hoc/Aux";
 
@@ -15,7 +16,7 @@ class BurgerBuilder extends Component {
         return (
             <Aux>
                 <Burger ingredients = {this.state.ingredients}/>
-                <div>Build Controls</div>
+                <BuildControls/>
             </Aux>
 
         );
