@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Burger from "../../components/Burger/Burger";
+import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import Modal from "../../components/UI/Modal/Modal";
 import Aux from "../../Hoc/Aux";
 
 const INGREDIENT_PRICES = {
@@ -19,21 +21,19 @@ class BurgerBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
-        purchasable : false
+        purchasable: false
     }
 
-    updatePurchaseState(){
-        const ingredients = {
-            ...this.state.ingredients
-        }
+    updatePurchaseState(ingredients) {
+
         const sum = Object.keys(ingredients)
-        .map(igkey =>{
-            return ingredients[igkey];
-        })
-        .reduce((sum,el) =>{
-            return sum+el;
-        },0);
-        this.setState({purchasable : sum>0})
+            .map(igkey => {
+                return ingredients[igkey];
+            })
+            .reduce((sum, el) => {
+                return sum + el;
+            }, 0);
+        this.setState({ purchasable: sum > 0 })
     }
 
     addIngredientHandler = (type) => {
@@ -52,7 +52,7 @@ class BurgerBuilder extends Component {
                 ingredients: updateIngredients
             }
         )
-        this.updatePurchaseState();
+        this.updatePurchaseState(updateIngredients);
 
     }
 
@@ -75,28 +75,31 @@ class BurgerBuilder extends Component {
                 ingredients: updateIngredients
             }
         )
-        this.updatePurchaseState();
+        this.updatePurchaseState(updateIngredients);
 
 
     }
 
     render() {
-            const disabledInfo = {
-                ...this.state.ingredients
-            };
-            for(let key in disabledInfo){
-                disabledInfo[key] = disabledInfo[key] <= 0
-            }
+        const disabledInfo = {
+            ...this.state.ingredients
+        };
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0
+        }
 
         return (
             <Aux>
+                <Modal>
+                    <OrderSummary ingredients={this.state.ingredients} />
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BuildControls
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
-                    disabled = {disabledInfo} 
-                    price ={this.state.totalPrice}
-                    purchasable = {this.state.purchasable}/>
+                    disabled={disabledInfo}
+                    price={this.state.totalPrice}
+                    purchasable={this.state.purchasable} />
             </Aux>
 
         );
