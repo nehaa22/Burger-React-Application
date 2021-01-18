@@ -21,7 +21,12 @@ class BurgerBuilder extends Component {
             meat: 0
         },
         totalPrice: 4,
-        purchasable: false
+        purchasable: false,
+        purchasing: false
+    }
+
+    purchasehandler() {
+        this.setState({ purchasing: true })
     }
 
     updatePurchaseState(ingredients) {
