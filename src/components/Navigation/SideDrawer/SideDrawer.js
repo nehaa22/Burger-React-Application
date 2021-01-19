@@ -1,3 +1,4 @@
+import { checkPropTypes } from 'prop-types';
 import React from 'react';
 import Aux from '../../../Hoc/Aux';
 import Logo from '../../Logo/Logo';
@@ -8,7 +9,7 @@ import classes from "./SideDrawer.module.css";
 const SideDrawer = () => {
     return (
         <Aux>
-            <Backdrop show />
+            <Backdrop show= {props.open}  clicked={props.closed}/>
             <div className={classes.SideDrawer}>
                 <div className={classes.Logo}>
                     <Logo />
