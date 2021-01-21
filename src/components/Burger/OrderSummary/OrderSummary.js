@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Aux from '../../../Hoc/Aux';
+import Aux from '../../../Hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
     componentDidUpdate(){
         console.log("[OrderSummary] Did update");
     }
-    
+
     render() {
         const ingredientSummary = Object.keys(this.props.ingredients)
             .map(igKey => {
